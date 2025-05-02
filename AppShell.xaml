@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Furia_FanHub.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Furia_FanHub"
+    xmlns:views="clr-namespace:Furia_FanHub.MVVM.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Furia_FanHub"
+    Shell.TabBarForegroundColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+    Shell.TabBarUnselectedColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+    Shell.TabBarTitleColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+    Shell.TabBarBackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}">
+
+    <ShellContent
+        Route="login"
+        ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <ShellContent
+        Route="register"
+        ContentTemplate="{DataTemplate views:RegisterPage}" />
+
+    <TabBar>
+
+        <!-- Página Inicial -->
+        <ShellContent 
+            Title="Início" 
+            Icon="house.png"
+            Route="home" 
+            ContentTemplate="{DataTemplate views:HomePage}" />
+
+        <!-- Agenda de Jogos -->
+        <ShellContent 
+            Title="Jogos" 
+            Icon="game.png" 
+            Route="games" 
+            ContentTemplate="{DataTemplate views:GameSchedulePage}" />
+
+        <!-- ChatBot -->
+        <ShellContent 
+            Title="ChatBot" 
+            Icon="chat.png" 
+            Route="chat"
+            ContentTemplate="{DataTemplate views:ChatPage}" />
+
+        <!-- Perfil -->
+        <ShellContent 
+            Title="Perfil" 
+            Icon="profile.png" 
+            Route="profile" 
+            ContentTemplate="{DataTemplate views:ProfilePage}" />
+
+    </TabBar>
+
+</Shell>

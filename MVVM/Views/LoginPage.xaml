@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Furia_FanHub.MVVM.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0,30,0" Spacing="10" VerticalOptions="Start">
+
+            <Label 
+                Text="FURIA FanHub"
+                Margin="0,30,0,0"
+                FontSize="24" 
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                TextColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+
+            <Image
+                Source="logo"
+                HeightRequest="150"
+                WidthRequest="150"
+                Margin="0,0,0,50"/>
+
+            <!-- email entry -->
+            <Border
+            StrokeShape="RoundRectangle 50"
+            Padding="10,0"
+            BackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}">
+
+                <Entry 
+                    x:Name="EmailEntry"
+                    Placeholder="Email" 
+                    Text="{Binding Email}"
+                    Keyboard="Email"
+                    TextColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+                    FontAttributes="Bold"/>
+            </Border>
+
+            <!-- password entry -->
+            <Border
+                StrokeShape="RoundRectangle 50"
+                Padding="10,0"
+                BackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}">
+
+                <Entry 
+                    x:Name="PasswordEntry"
+                    Placeholder="Senha" 
+                    IsPassword="True" 
+                    Text="{Binding Password}"
+                    TextColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"/>
+                
+            </Border>
+
+            <Button 
+            Text="Entrar"
+            Command="{Binding LoginCommand}"
+            BackgroundColor="#4CAF50"
+            TextColor="White"
+            CornerRadius="50"
+            Margin="0,0,0,20"/>
+
+            <Button 
+                Text="Entrar com Google"
+                Command="{Binding GoogleLoginCommand}"
+                BackgroundColor="#DB4437"
+                TextColor="White"
+                CornerRadius="50"/>
+
+            <Button 
+            Text="Entrar como Convidado"
+            Command="{Binding GuestCommand}"
+            BackgroundColor="Gray"
+            TextColor="White"
+            CornerRadius="50" />
+
+            <Button 
+                Text="Não tem uma conta? Registre-se"
+                Command="{Binding RegisterCommand}"
+                BackgroundColor="Transparent"
+                TextColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                CornerRadius="50"
+                Margin="20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

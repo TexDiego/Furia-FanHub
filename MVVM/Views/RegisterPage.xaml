@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Furia_FanHub.MVVM.Helpers"
+             xmlns:models="clr-namespace:Furia_FanHub.MVVM.Models"
+             x:Class="Furia_FanHub.MVVM.Views.RegisterPage"
+             Title="Registre-se"
+             Shell.ForegroundColor="{AppThemeBinding Dark=White, Light=Black}"
+             Shell.BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+             Shell.TitleColor="{AppThemeBinding Dark=White, Light=Black}"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10,20,10,10" Spacing="15">
+            
+            <!-- Dados pessoais -->
+            <VerticalStackLayout>
+
+                <Border Padding="10"
+                        Stroke="{AppThemeBinding Dark=White, Light=Black}"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="1">
+                    
+                    <VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="20">
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AlternarVisibilidadeCommand}"
+                                                      CommandParameter="DadosPessoais"/>
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                            <Label Text="Dados pessoais"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="0,0,0,20"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>
+
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout x:Name="Dados" IsVisible="{Binding Visibilidade_DadosPessoais}">
+                            
+                            <Label Text="Nome Completo"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"/>
+
+                            <models:CustomEntry x:Name="NomeEntry"
+                                                Placeholder="Digite seu nome completo"
+                                                MaxLength="30"
+                                                Margin="0,0,10,0"/>
+
+                            <BoxView HeightRequest="1"
+                                     HorizontalOptions="Fill"
+                                     VerticalOptions="Start"
+                                     Margin="0,-5,10,20"
+                                     Color="{AppThemeBinding Dark=White, Light=Black}"/>
+
+                            <Grid RowDefinitions="*, *" ColumnDefinitions="auto, *" ColumnSpacing="20">
+                                
+                                <Label Text="CPF"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       FontAttributes="Bold"/>
+
+                                <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                                    
+                                    <models:CustomEntry x:Name="CpfEntry"
+                                                        Placeholder="000.000.000-00"
+                                                        MaxLength="11"
+                                                        Keyboard="Numeric"
+                                                        HorizontalOptions="Start">
+
+                                        <models:CustomEntry.Behaviors>
+                                            <models:CPFEntryValidationBehavior/>
+                                        </models:CustomEntry.Behaviors>
+
+                                    </models:CustomEntry>
+
+                                    <BoxView HeightRequest="1"
+                                             HorizontalOptions="Fill"
+                                             Color="{AppThemeBinding Dark=White, Light=Black}"
+                                             Margin="0,-5,0,20"/>
+                                    
+                                </VerticalStackLayout>
+
+                                <Label Text="Data de nascimento"
+                                       Grid.Column="1"
+                                       Grid.Row="0"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       FontAttributes="Bold"/>
+
+                                <DatePicker x:Name="BirthDatePicker"
+                                            Grid.Column="1"
+                                            Grid.Row="1"
+                                            TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                            FontSize="14"
+                                            Format="dd/MM/yyyy"
+                                            HorizontalOptions="Start"
+                                            Margin="0,0,10,20"/>
+
+                            </Grid>
+
+                            <Label Text="E-mail"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"/>
+
+                            <models:CustomEntry x:Name="EmailEntry"
+                                                Text="{Binding Email.Value, Mode=TwoWay}"
+                                                TextColor="{Binding Email.IsValid, Converter={StaticResource BoolToColorConverter}}"
+                                                Placeholder="exemplo@email.com"
+                                                Keyboard="Email"/>
+
+                            <BoxView HeightRequest="1"
+                                     HorizontalOptions="Fill"
+                                     Color="{AppThemeBinding Dark=White, Light=Black}"
+                                     Margin="0,-5,10,20"/>
+
+                            <Grid RowDefinitions="*,*" ColumnDefinitions="*, auto" ColumnSpacing="20">
+
+                                <Label Text="Nova Senha"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       FontAttributes="Bold"/>
+
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                                    
+                                    <models:CustomEntry x:Name="PasswordEntry"                                                        
+                                                        IsPassword="True"
+                                                        Keyboard="Default"
+                                                        BackgroundColor="Transparent"/>
+
+                                    <BoxView HeightRequest="1"
+                                             HorizontalOptions="Fill"
+                                             Color="{AppThemeBinding Dark=White, Light=Black}"
+                                             Margin="0,-9,0,20"/>
+                                    
+                                </VerticalStackLayout>
+
+                                <ImageButton x:Name="ShowPassword1"
+                                             Grid.Column="1"
+                                             Grid.Row="1"
+                                             Source="{AppThemeBinding Dark=eyehiddenwhite, Light=eyehiddenblack}"
+                                             HeightRequest="20"
+                                             WidthRequest="20"
+                                             Margin="0,0,20,20"
+                                             BackgroundColor="Transparent"
+                                             Clicked="ShowPassword1_Clicked"/>
+                            </Grid>
+
+                        </VerticalStackLayout>
+                        
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Endereço -->
+            <VerticalStackLayout>
+
+                <Border Padding="10"
+                        Stroke="{AppThemeBinding Dark=White, Light=Black}"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="1">
+
+                    <VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="20">
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AlternarVisibilidadeCommand}"
+                                                      CommandParameter="Endereco"/>
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                            <Label Text="Endereço"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="0,0,0,20"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>
+
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout x:Name="Endereco" IsVisible="{Binding Visibilidade_Endereco}">
+                            
+                            <Label Text="CEP"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"/>
+
+                            <HorizontalStackLayout Spacing="20">
+
+                                <Entry Grid.Column="0"
+                                       x:Name="CEPEntry"
+                                       Placeholder="00000000"
+                                       Keyboard="Numeric"
+                                       HorizontalOptions="Start"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       MaxLength="8"/>
+
+                                <ImageButton Grid.Column="2"
+                                             x:Name="SearchCEPButton"
+                                             Source="loupe"
+                                             HeightRequest="30"
+                                             WidthRequest="30"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="End"
+                                             Margin="0,0,10,0"
+                                             Clicked="SearchCEPButton_Clicked"/>
+
+                                <ActivityIndicator x:Name="ActivityIndicatorCEP"
+                                                   Color="{AppThemeBinding Dark=White, Light=Black}"
+                                                   Grid.Column="1"
+                                                   IsRunning="False"
+                                                   HeightRequest="30"
+                                                   WidthRequest="30"/>
+                                
+                            </HorizontalStackLayout>
+
+                            <Entry MaxLength="50"
+                                   x:Name="Logradouro"
+                                   Placeholder="Rua"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   Keyboard="Default"
+                                   Margin="0,0,10,20"/>
+
+                            <Entry Keyboard="Default"
+                                   x:Name="Bairro"
+                                   Placeholder="Bairro"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   Margin="0,0,10,20"/>
+
+                            <Grid ColumnDefinitions="*,auto"
+                                  Margin="0,0,0,20"
+                                  ColumnSpacing="20">
+
+                                <Entry Grid.Column="0"
+                                       x:Name="Cidade"
+                                       Keyboard="Default"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       Placeholder="Cidade"
+                                       VerticalOptions="Center"/>
+
+                                <Entry Grid.Column="1"
+                                       x:Name="UF"
+                                       MaxLength="2"
+                                       Placeholder="UF"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,10,0"/>
+
+                            </Grid>
+
+                            <Entry Placeholder="País"
+                                   x:Name="Pais"
+                                   Margin="0,0,10,0"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   IsEnabled="True"/>
+
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+
+            </VerticalStackLayout>
+
+            <!-- Interesses -->
+            <VerticalStackLayout>
+
+                <Border Padding="10"
+                        Stroke="{AppThemeBinding Dark=White, Light=Black}"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="1">
+
+                    <VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="20">
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AlternarVisibilidadeCommand}"
+                                                      CommandParameter="Interesses"/>
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                            <Label Text="Interesses"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   Margin="0,0,0,20"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>
+
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout x:Name="Interesses" IsVisible="{Binding Visibilidade_Interesses}">
+
+                            <Label Text="Selecione os itens de interesse"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"/>
+
+                            <ScrollView>
+                                <FlexLayout
+                                    x:Name="InterestsFlexLayout"
+                                    BindableLayout.ItemsSource="{Binding InteressesDisponiveis}"
+                                    Wrap="Wrap"
+                                    Direction="Row"
+                                    JustifyContent="Center"
+                                    AlignItems="Start"
+                                    Margin="10">
+
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border
+                                                Padding="10"
+                                                Margin="2"
+                                                StrokeShape="RoundRectangle 20"
+                                                Stroke="{AppThemeBinding Dark=White, Light=Black}"
+                                                BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToColorConverter}}"
+                                                HorizontalOptions="Center">
+
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding BindingContext.ToggleSelectionCommand, Source={x:Reference InterestsFlexLayout}}"
+                                                        CommandParameter="{Binding .}"/>
+                                                </Border.GestureRecognizers>
+
+                                                <Label
+                                                    Text="{Binding Name}"
+                                                    FontSize="12"
+                                                    HorizontalOptions="Center"
+                                                    TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
+                            </ScrollView>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Cadastrar -->
+            <Button Text="Cadastrar"
+                    x:Name="RegisterUser"
+                    BackgroundColor="{AppThemeBinding Dark=White, Light=Black}"
+                    TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                    CornerRadius="10"
+                    Padding="10"
+                    Clicked="RegisterUser_Clicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

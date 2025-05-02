@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Furia_FanHub.MVVM.Views.ChatPage"
+             xmlns:local="clr-namespace:Furia_FanHub.MVVM.Views"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}">
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="UserTemplate">
+
+            <VerticalStackLayout>
+
+                <Label
+                    Text="Você"
+                    FontSize="14"
+                    Margin="10,10,15,0"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    TextColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"/>
+
+                <Border 
+                    BackgroundColor="{AppThemeBinding Dark=DarkGrey, Light=Grey, Default=Grey}"
+                    Padding="10,5"
+                    Margin="10,0,10,10"
+                    HorizontalOptions="End"
+                    Stroke="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="0">
+
+                    <Label
+                        HorizontalOptions="End"
+                        FontSize="16"
+                        Text="{Binding Text}"
+                        TextColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}" />
+
+                </Border>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BotTemplate">
+
+            <VerticalStackLayout>
+
+                <Label
+                    x:Name="botName"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BotName}"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    Margin="15,10,10,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    TextColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"/>
+
+                <Border
+                    BackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                    Padding="10,5"
+                    Margin="10,0,10,10"
+                    HorizontalOptions="Start"
+                    Stroke="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="0">
+
+                    <Label
+                        Text="{Binding Text}"
+                        TextColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}" />
+
+                </Border>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SystemMessageTemplate">
+
+            <Label Text="{Binding Text}"
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   Margin="20"
+                   FontAttributes="Italic,Bold"
+                   TextColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+
+        </DataTemplate>
+
+        <local:ChatMessageTemplateSelector x:Key="ChatSelector"
+            UserMessageTemplate="{StaticResource UserTemplate}"
+            BotMessageTemplate="{StaticResource BotTemplate}"
+            SystemMessageTemplate="{StaticResource SystemMessageTemplate}" />
+
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,auto">
+        
+        <Image
+            Grid.RowSpan="2"
+            Source="logo.png"
+            Aspect="AspectFill"
+            HeightRequest="150"
+            WidthRequest="150"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="Transparent"
+            Margin="0,30"/>
+
+        <CollectionView
+            Grid.Row="0"
+            x:Name="MessagesView"
+            ItemsSource="{Binding Messages}"
+            ItemTemplate="{StaticResource ChatSelector}"
+            Margin="10"
+            VerticalOptions="End"
+            FlowDirection="LeftToRight"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
+            VerticalScrollBarVisibility="Default"/>
+
+        <Border Grid.Row="1"
+                VerticalOptions="End"
+                Margin="10"
+                BackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                Stroke="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                StrokeShape="RoundRectangle 50"
+                StrokeThickness="0">
+            
+            <Grid ColumnDefinitions="*,50" Padding="10,5">
+                
+                <Entry x:Name="UserEntry"
+                       Grid.Column="0"
+                       TextColor="{AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+                       FontSize="14"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Center"
+                       Placeholder="Digite sua mensagem..."
+                       Text="{Binding UserInput}"/>
+
+                <ImageButton Grid.Row="1"
+                             Grid.Column="1"
+                             Margin="0,0,10,0"
+                             Source="{AppThemeBinding Dark=sendblack, Light=sendwhite}"
+                             BackgroundColor="{AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                             Aspect="AspectFill"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             VerticalOptions="Center"
+                             HorizontalOptions="End"
+                             Clicked="OnSendClicked"/>
+                
+            </Grid>
+            
+        </Border>
+
+    </Grid>
+
+</ContentPage>

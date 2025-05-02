@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Furia_FanHub.MVVM.Views.ProfilePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}">
+    
+    <Grid>
+
+        <!-- Imagem / Banner -->
+        <Image 
+        Source="logo.png"
+        Aspect="AspectFill"
+        HeightRequest="150"
+        WidthRequest="150"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        BackgroundColor="Transparent"
+        Margin="0,30"/>
+
+        <ScrollView>
+            <Grid
+                RowDefinitions="*,*"
+                Padding="20"
+                RowSpacing="25">
+
+                <VerticalStackLayout Grid.Row="0" Spacing="15">
+                    <!-- Header -->
+                    <Label Text="Perfil"
+                       FontSize="32"
+                       TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                    <!-- Nome -->
+                    <Border
+                        BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label 
+                                Text="Nome:"
+                                   LineBreakMode="WordWrap"
+                                   TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                   FontSize="14" />
+
+                            <Label 
+                                x:Name="UserName"
+                                Text="{Binding UserName}"
+                                   TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                   FontSize="18"/>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                    <!-- Idade -->
+                    <Border BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label Text="Idade:"
+                               TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                               FontSize="14" />
+
+                            <Label 
+                                 x:Name="UserAge"
+                                Text="{Binding UserAge}"
+                               TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                               FontSize="18"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Endereço -->
+                    <Border BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                            Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 15"
+                            Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label Text="Endereço:"
+                                   TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                   FontSize="14" />
+
+                            <Label 
+                                 x:Name="UserAddress"
+                                Text="{Binding UserAddress}"
+                                   TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                   FontSize="18"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Interesses -->
+                    <Border BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label Text="Interesses:"
+                               TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                               FontSize="14" />
+
+                            <Label 
+                                x:Name="UserInterests"
+                                Text="{Binding UserPreferences}"
+                               TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                               FontSize="18"
+                               LineBreakMode="WordWrap" />
+
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" VerticalOptions="End" Spacing="15">
+                    <!-- Configurações -->
+                    <Button                        
+                        x:Name="SettingsButton"
+                        Text="Configurações"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"/>
+
+                    <!-- Botão de Logout -->
+                    <Button
+                        x:Name="LogoutButton"
+                        Text="Desconectar"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        BackgroundColor="#F44336"
+                        Command="{Binding Logoff}"/>
+                </VerticalStackLayout>
+                
+                
+            </Grid>
+        </ScrollView>
+
+        <Grid BackgroundColor="Transparent" IsVisible="{Binding IsGuest}">
+
+            <BoxView
+                BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                Opacity="0.9"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"/>
+
+            <Border
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                StrokeShape="RoundRectangle 15"
+                Padding="15"
+                BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}">
+                
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="Ops, você não está logado"
+                        TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                        FontSize="18"
+                        VerticalOptions="Start"
+                        FontAttributes="Bold"
+                        Margin="0,0,0,15"/>
+
+                    <Button
+                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                        Text="Login"
+                        TextColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+                        FontSize="18"
+                        CornerRadius="5"
+                        Command="{Binding Login}"/>
+
+                    <Button
+                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                        Text="Registre-se"
+                        TextColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
+                        FontSize="18"
+                        CornerRadius="5"
+                        Command="{Binding Register}"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </Grid>
+
+    </Grid>
+    
+</ContentPage>
