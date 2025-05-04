@@ -27,14 +27,13 @@
 Furia-FanHub/
 ├── .idea/                 # Configurações do ambiente de desenvolvimento
 ├── MVVM/                  # Implementações do padrão MVVM
+│   ├── Helpers/           # Classes auxiliares para funcionalidades compartilhadas
 │   ├── Models/            # Modelos de dados (representações de informações utilizadas pelo app)
 │   │   └── Interfaces/    # Interfaces que definem contratos para serviços e modelos
-│   ├── ViewModels/        # Lógica de apresentação (controle de dados e interações com as Views)
-│   ├── Views/             # Interfaces de usuário (definição das telas e layout)
-│   ├── Helpers/           # Classes auxiliares para funcionalidades compartilhadas
+│   ├── Repositories/      # Repositórios responsáveis pela persistência de dados
 │   ├── Services/          # Lógica de negócios complexa (comunicação com APIs e persistência)
-│   ├── Resources/         # Recursos utilizados no app, como imagens, fontes e estilos
-│   └── Extensions/        # Métodos de extensão para tipos existentes
+│   ├── ViewModels/        # Lógica de apresentação (controle de dados e interações com as Views)
+│   └── Views/             # Interfaces de usuário (definição das telas e layout)
 ├── Platforms/             # Configurações específicas por plataforma (Android, iOS, etc)
 ├── Properties/            # Metadados e configurações do projeto
 ├── Resources/             # Arquivos de recursos globais, como imagens e fontes
