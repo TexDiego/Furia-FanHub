@@ -134,7 +134,8 @@
                         FontSize="16"
                         FontAttributes="Bold"
                         TextColor="{x:AppThemeBinding Dark={x:StaticResource Black}, Light={x:StaticResource White}}"
-                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"/>
+                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                        Clicked="SettingsButton_Clicked"/>
 
                     <!-- Botão de Logout -->
                     <Button

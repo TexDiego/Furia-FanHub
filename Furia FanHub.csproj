@@ -56,7 +56,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\Images\logo.png" Color="Transparent" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\applogo.png" Color="Transparent" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Images\logo.png" Color="Transparent" BaseSize="256,256" />
@@ -72,6 +72,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\AppIcon\applogo.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Identity.Client" Version="4.71.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
@@ -85,7 +90,10 @@
 	  <MauiXaml Update="MVVM\Views\ChatPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\GameSchedulePage.xaml">
+	  <MauiXaml Update="MVVM\Views\ConfigsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CustomPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Views\HomePage.xaml">

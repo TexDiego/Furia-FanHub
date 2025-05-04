@@ -19,26 +19,78 @@
             Margin="0,30"/>
 
         <ScrollView>
-            <VerticalStackLayout Spacing="20" Padding="20">
+            <Grid Padding="20" RowDefinitions="*,60">
 
-                <!-- Boas-vindas -->
-                <Label
+                <VerticalStackLayout Grid.Row="0">
+                    <!-- Boas-vindas -->
+                    <Label
                     FontSize="32" 
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
                     FontAttributes="Bold"
                     TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}">
 
-                    <Label.FormattedText>
-                        <FormattedString >
-                            <Span Text="Bem vindo&#10;"/>
-                            <Span Text="{Binding Nome}" FontAttributes="Bold"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                    
-                </Label>
+                        <Label.FormattedText>
+                            <FormattedString >
+                                <Span Text="Bem vindo&#10;"/>
+                                <Span Text="{Binding Nome}" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
 
-            </VerticalStackLayout>
+                <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
+
+                    <Border
+                        Grid.Column="0"
+                        StrokeShape="RoundRectangle 15"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        StrokeThickness="1"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                        BackgroundColor="White">
+                        
+                        <ImageButton
+                            x:Name="XButton"
+                            Source="xlogo"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            Clicked="XButton_Clicked"/>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        StrokeShape="RoundRectangle 15"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        StrokeThickness="0">
+
+                        <ImageButton
+                            x:Name="InstagramButton"
+                            Source="instagramlogo"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            Clicked="InstagramButton_Clicked"/>
+                    </Border>
+
+                    <Border
+                        Grid.Column="2"
+                        StrokeShape="RoundRectangle 15"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        StrokeThickness="0">
+
+                        <ImageButton
+                            x:Name="whatsappButton"
+                            Source="whatsapplogo"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            Clicked="whatsappButton_Clicked"/>
+                    </Border>
+
+                </Grid>
+
+            </Grid>
         </ScrollView>
 
     </Grid>

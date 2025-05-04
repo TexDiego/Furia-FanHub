@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tk:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:tk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Furia_FanHub.MVVM.Views.CustomPopUp"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent">
+
+    <tk:Popup.Resources>
+        <Style x:Key="subtitle" TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark=Black, Light=White}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style x:Key="content" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark=Black, Light=White}"/>
+            <Setter Property="LineBreakMode" Value="WordWrap"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        </Style>
+    </tk:Popup.Resources>
+    
+    <Border
+        StrokeShape="RoundRectangle 30"
+        StrokeThickness="0"
+        BackgroundColor="{AppThemeBinding Dark=White, Light=Black}"
+        HorizontalOptions="Center"
+        Padding="20"
+        Margin="20">
+
+        <VerticalStackLayout x:Name="Content">
+
+            <Label 
+                Text="Termo de Uso e Política de Privacidade"
+                FontSize="20"
+                LineBreakMode="WordWrap"
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20"
+                TextColor="{AppThemeBinding Dark=Black, Light=White}"/>
+
+            <Border StrokeShape="RoundRectangle 15" Padding="10">
+                <ScrollView VerticalScrollBarVisibility="Default" MaximumHeightRequest="250">
+                    <VerticalStackLayout Spacing="20">
+                        <Label
+                            Text="Última atualização: 04/05/2025"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Este Termo de Uso regula o uso do aplicativo Furia FanHub, de propriedade da FURIA Esports, bem como a coleta, uso e tratamento dos dados fornecidos pelos usuários. Ao utilizar o aplicativo, você concorda com os termos descritos abaixo."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="1. Coleta de Dados Pessoais"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Ao se cadastrar no aplicativo, coletamos os seguintes dados pessoais:&#10;&#10;• Nome completo&#10;• CPF&#10;• Idade/Data de nascimento&#10;• Endereço completo&#10;&#10;Esses dados são fornecidos de forma voluntária e são necessários para o funcionamento adequado do aplicativo e para os propósitos informados abaixo."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="2. Finalidade da Coleta"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Os dados coletados serão utilizados exclusivamente para fins de:&#10;&#10;• Pesquisas de mercado promovidas pela FURIA&#10;• Análise de perfil de público&#10;• Melhorias na experiência dos fãs da FURIA&#10;• Comunicação institucional, caso autorizado&#10;&#10;Os dados não serão vendidos, alugados ou compartilhados com terceiros sem o seu consentimento expresso, salvo em cumprimento de obrigações legais."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="3. Armazenamento e Segurança"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Seus dados serão armazenados de forma segura, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD). Medidas técnicas e administrativas são adotadas para garantir a integridade, confidencialidade e proteção contra acessos não autorizados."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="4. Consentimento"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Ao aceitar este termo, você concorda expressamente com a coleta e uso dos dados descritos acima para as finalidades especificadas.&#10;&#10;Você pode revogar seu consentimento a qualquer momento, mediante solicitação por meio do canal de atendimento: drii09diego@gmail.com."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="5. Direitos do Usuário"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="Conforme a LGPD, você tem direito a:&#10;&#10;• Acessar e corrigir seus dados&#10;• Solicitar a exclusão de seus dados&#10;• Revogar o consentimento de uso&#10;• Obter informações sobre o compartilhamento de dados&#10;&#10;Para exercer esses direitos, entre em contato com nosso encarregado de dados (DPO) através de: drii09diego@gmail.com."
+                            Style="{StaticResource content}"/>
+
+                        <Label
+                            Text="6. Alterações neste Termo"
+                            Style="{StaticResource subtitle}"/>
+
+                        <Label
+                            Text="A FURIA poderá alterar este Termo de Uso a qualquer momento. Em caso de alterações significativas, você será notificado pelo próprio aplicativo ou por outros meios."
+                            Style="{StaticResource content}"/>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+
+            <Grid ColumnDefinitions="auto,*" RowDefinitions="*,*,*">
+
+                <Label
+                    Text="Ao continuar utilizando o aplicativo, você declara estar ciente e de acordo com os termos aqui apresentados."
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    FontAttributes="Bold"
+                    Margin="0,10,0,0"/>
+                
+                <CheckBox
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="TermsCheckBox"
+                    VerticalOptions="Center"
+                    Margin="0,20,0,20"
+                    Color="{AppThemeBinding Dark=Black, Light=White}"/>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Eu li e estou de acordo com os Termos de Uso e Política de Privacidade"
+                    TextColor="{AppThemeBinding Dark=Black, Light=White}"
+                    LineBreakMode="WordWrap"
+                    VerticalOptions="Center"
+                    Margin="0,20,0,20"/>
+
+                <Grid
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="auto"
+                    ColumnSpacing="20">
+
+                    <Button
+                        x:Name="CancelButton"
+                        Grid.Column="0"
+                        Text="Cancelar"
+                        FontSize="14"
+                        TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                        BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+                        Clicked="CancelButton_Clicked"/>
+
+                    <Button
+                        x:Name="ContinueButton"
+                        Grid.Column="1"
+                        Text="Continuar"
+                        FontSize="14"
+                        TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                        BackgroundColor="{AppThemeBinding Dark=Black, Light=White}"
+                        Clicked="ContinueButton_Clicked"/>
+
+                </Grid>                
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </Border>
+
+</tk:Popup>

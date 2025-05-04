@@ -1,4 +1,5 @@
-﻿using Furia_FanHub.MVVM.Helpers;
+﻿using CommunityToolkit.Maui;
+using Furia_FanHub.MVVM.Helpers;
 using Furia_FanHub.MVVM.Models;
 using Furia_FanHub.MVVM.Repositories;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,7 @@ namespace Furia_FanHub
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

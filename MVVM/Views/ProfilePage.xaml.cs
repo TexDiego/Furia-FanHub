@@ -23,4 +23,9 @@ public partial class ProfilePage : ContentPage
             vm.RefreshData();
         }
     }
+
+    private void SettingsButton_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//settings");
+    }
 }

@@ -20,6 +20,10 @@
         Route="register"
         ContentTemplate="{DataTemplate views:RegisterPage}" />
 
+    <ShellContent
+        Route="settings"
+        ContentTemplate="{DataTemplate views:ConfigsPage}"/>
+
     <TabBar>
 
         <!-- Página Inicial -->
@@ -28,13 +32,6 @@
             Icon="house.png"
             Route="home" 
             ContentTemplate="{DataTemplate views:HomePage}" />
-
-        <!-- Agenda de Jogos -->
-        <ShellContent 
-            Title="Jogos" 
-            Icon="game.png" 
-            Route="games" 
-            ContentTemplate="{DataTemplate views:GameSchedulePage}" />
 
         <!-- ChatBot -->
         <ShellContent 

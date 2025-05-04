@@ -1,4 +1,3 @@
-using Furia_FanHub.MVVM.Repositories;
 using Furia_FanHub.MVVM.ViewModels;
 
 namespace Furia_FanHub.MVVM.Views;
@@ -8,8 +7,6 @@ public partial class HomePage : ContentPage, IQueryAttributable
     private bool _isGuest = true;
     private int id = 0;
     private HomeViewModel _viewModel;
-    private readonly string dbPath = Path.Combine(FileSystem.AppDataDirectory, "fans.db3");
-    private FanRepository _fanRepository;
 
     public HomePage()
     {
@@ -20,7 +17,6 @@ public partial class HomePage : ContentPage, IQueryAttributable
     {
         try
         {
-            _fanRepository = new FanRepository(dbPath);
             _viewModel = new HomeViewModel(id);
             BindingContext = _viewModel;
         }
@@ -50,6 +46,42 @@ public partial class HomePage : ContentPage, IQueryAttributable
         {
             await App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro ao carregar os dados do usuário.", "OK");
             Console.WriteLine(ex.Message);
+        }
+    }
+
+    private async void XButton_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            await Launcher.OpenAsync("https://x.com/FURIA");
+        }
+        catch
+        {
+            await App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro ao abrir o link.", "OK");
+        }
+    }
+
+    private void InstagramButton_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            Launcher.OpenAsync("https://www.instagram.com/furiagg/");
+        }
+        catch
+        {
+            App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro ao abrir o link.", "OK");
+        }
+    }
+
+    private void whatsappButton_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            Launcher.OpenAsync("https://wa.me/5511993404466");
+        }
+        catch
+        {
+            App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro ao abrir o link.", "OK");
         }
     }
 }

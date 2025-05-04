@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Furia_FanHub.MVVM.Helpers"
+             x:Class="Furia_FanHub.MVVM.Views.ConfigsPage"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <!-- Imagem / Banner -->
+        <Image 
+            Source="logo.png"
+            Aspect="AspectFill"
+            HeightRequest="200"
+            WidthRequest="200"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="Transparent"
+            Margin="0,30"/>
+
+        <ScrollView>
+            <Grid
+                RowDefinitions="*,*,*"
+                Padding="20"
+                RowSpacing="25">
+
+                <VerticalStackLayout Grid.Row="0" Spacing="15">
+                    <!-- Header -->
+                    <Label Text="Configurações"
+                       FontSize="32"
+                       TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                    <!-- Nome -->
+                    <Border
+                        BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label 
+                                Text="Nome:"
+                                LineBreakMode="WordWrap"
+                                TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                FontSize="20"
+                                FontAttributes="Bold"/>
+
+                            <Entry 
+                                x:Name="UserName"
+                                Text="{Binding UserName}"
+                                   TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                   FontSize="18"/>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                    <!-- Idade -->
+                    <Border
+                        BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label
+                                Text="Data de nascimento:"
+                                TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"
+                                FontSize="20"
+                                FontAttributes="Bold"/>
+
+                            <DatePicker
+                                x:Name="BirthDatePicker"
+                                Date="{Binding UserBirthDate}"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                FontSize="14"
+                                Format="dd/MM/yyyy"
+                                HorizontalOptions="Start"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Endereço -->
+                    <Border
+                        BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <Label
+                                Text="Endereço"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Margin="0,0,0,15"
+                                TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}"/>
+                            
+                            <Label
+                               Text="CEP"
+                               TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                               FontAttributes="Bold"/>
+
+                            <HorizontalStackLayout Spacing="20">
+
+                                <Entry
+                                   Grid.Column="0"
+                                   Text="{Binding UserCEP}"
+                                   x:Name="CEPEntry"
+                                   Placeholder="00000000"
+                                   Keyboard="Numeric"
+                                   HorizontalOptions="Start"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                   MaxLength="8"/>
+
+                                <ImageButton
+                                    Grid.Column="2"
+                                    x:Name="SearchCEPButton"
+                                    Source="loupe"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"
+                                    Margin="0,0,10,0"
+                                    Clicked="SearchCEPButton_Clicked"/>
+
+                                <ActivityIndicator 
+                                    x:Name="ActivityIndicatorCEP"
+                                    Color="{AppThemeBinding Dark=White, Light=Black}"
+                                    Grid.Column="1"
+                                    IsRunning="False"
+                                    HeightRequest="30"
+                                    WidthRequest="30"/>
+
+                            </HorizontalStackLayout>
+
+                            <Entry 
+                                MaxLength="50"
+                                Text="{Binding UserRua}"
+                                x:Name="Logradouro"
+                                Placeholder="Rua"
+                                TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                Keyboard="Default"
+                                Margin="0,0,10,20"/>
+
+                            <Entry
+                                Keyboard="Default"
+                                Text="{Binding UserBairro}"
+                                x:Name="Bairro"
+                                Placeholder="Bairro"
+                                TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                Margin="0,0,10,20"/>
+
+                            <Grid
+                                ColumnDefinitions="*,auto"
+                                Margin="0,0,0,20"
+                                ColumnSpacing="20">
+
+                                <Entry
+                                    Grid.Column="0"
+                                    x:Name="Cidade"
+                                    Text="{Binding UserCidade}"
+                                    Keyboard="Default"
+                                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                    Placeholder="Cidade"
+                                    VerticalOptions="Center"/>
+
+                                <Entry Grid.Column="1"
+                                     x:Name="UF"
+                                     Text="{Binding UserEstado}"
+                                     MaxLength="2"
+                                     Placeholder="UF"
+                                     HorizontalTextAlignment="Center"
+                                     TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                     VerticalOptions="Center"
+                                     Margin="0,0,10,0"/>
+
+                            </Grid>
+
+                            <Entry
+                                Placeholder="País"
+                                Text="{Binding UserPais}"
+                                x:Name="Pais"
+                                Margin="0,0,10,0"
+                                TextColor="{AppThemeBinding Dark=White, Light=Black}"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- Interesses -->
+                    <Border
+                        BackgroundColor="{x:AppThemeBinding Dark=#1C1C1C, Light=#F0F0F0}"
+                        Stroke="{x:AppThemeBinding Dark={x:StaticResource Gray600}, Light={x:StaticResource Gray300}}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15">
+
+                        <VerticalStackLayout>
+
+                            <HorizontalStackLayout Spacing="20">
+
+                                <Label
+                                    Text="Interesses"
+                                    TextColor="{AppThemeBinding Dark=White, Light=Black}"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    Margin="0,0,0,20"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"/>
+
+                            </HorizontalStackLayout>
+
+                            <VerticalStackLayout>
+
+                                <Label Text="Selecione os itens de interesse"
+                                   TextColor="{AppThemeBinding Dark=White, Light=Black}"/>
+
+                                <ScrollView>
+                                    <FlexLayout
+                                        x:Name="InterestsFlexLayout"
+                                        BindableLayout.ItemsSource="{Binding InteressesDisponiveis}"
+                                        Wrap="Wrap"
+                                        Direction="Row"
+                                        JustifyContent="Center"
+                                        AlignItems="Start"
+                                        Margin="10">
+
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border
+                                                    Padding="10"
+                                                    Margin="2"
+                                                    StrokeShape="RoundRectangle 20"
+                                                    Stroke="{AppThemeBinding Dark=White, Light=Black}"
+                                                    BackgroundColor="{Binding IsSelected, Converter={StaticResource BoolToColorConverter}}"
+                                                    HorizontalOptions="Center">
+
+                                                    <Border.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding BindingContext.ToggleSelectionCommand, Source={x:Reference InterestsFlexLayout}}"
+                                                            CommandParameter="{Binding .}"/>
+                                                    </Border.GestureRecognizers>
+
+                                                    <Label
+                                                        Text="{Binding Name}"
+                                                        FontSize="12"
+                                                        HorizontalOptions="Center"
+                                                        TextColor="{AppThemeBinding Dark=White, Light=Black}" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </FlexLayout>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" VerticalOptions="End" Spacing="20">
+
+                    <Button
+                        x:Name="SaveChanges"
+                        Text="Salvar mudanças"
+                        BackgroundColor="{x:AppThemeBinding Dark=White, Light=Black}"
+                        TextColor="{x:AppThemeBinding Dark=Black, Light=White}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        Command="{Binding SaveCommand}"/>
+                    
+                    <Button
+                        x:Name="DeleteAccount"
+                        Text="Excluir conta"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        Command="{Binding DeleteAccountCommand}"/>
+
+                </VerticalStackLayout>
+
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

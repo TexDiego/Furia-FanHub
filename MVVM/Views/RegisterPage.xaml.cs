@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using Furia_FanHub.MVVM.Helpers;
 using Furia_FanHub.MVVM.Models;
 using Furia_FanHub.MVVM.Models.Services;
@@ -161,15 +162,19 @@ public partial class RegisterPage : ContentPage
 
             if (!ValidateEmail() || !ValidateCPF(fanProfile.CPF) || VerifyNullOrWhiteSpaces() || await UserExists()) return;
 
+            bool PolicyAndPrivacyAwareness = (bool)(await this.ShowPopupAsync(new CustomPopUp()));
+            if (!PolicyAndPrivacyAwareness) return;
+
             await _fanRepository.SaveFanAsync(fanProfile);
 
             await App.Current.MainPage.DisplayAlert("Sucesso", "Usuário cadastrado com sucesso!", "OK");
 
-            await Shell.Current.GoToAsync("//Login");
+            await Shell.Current.GoToAsync("//login");
         }
         catch (Exception ex)
         {
             await App.Current.MainPage.DisplayAlert("Erro", "Ocorreu um erro ao cadastrar o usuário. Tente novamente.", "OK");
+            Console.WriteLine(ex.StackTrace);
             Console.WriteLine(ex.Message);
         }
     }
